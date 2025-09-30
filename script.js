@@ -381,7 +381,7 @@ function updateDashboardStats() {
 function initializeAttendanceChart() {
     const ctx = document.getElementById('attendanceChart').getContext('2d');
     
-    attendanceChart = new Chart(ctx, {
+    window.attendanceChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: ['Excellent (90-100%)', 'Good (75-89%)', 'Average (60-74%)', 'Poor (<60%)'],
