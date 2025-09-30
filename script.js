@@ -397,9 +397,9 @@ function addDemoData() {
     // Add demo students
     const addStudents = [
         { id: '1', name: 'Aditya Kumar', rollNo: '03', class: 'BCA', attendance: 95 },
-        { id: '2', name: 'Himashu Kumar', rollNo: '33', class: 'BCA', attendance: 88 },
-        { id: '3', name: 'Lekh Raj Soni ', rollNo: '05', class: 'BCA', attendance: 76 },
-        { id: '4', name: 'Shreya Shambhavi', rollNo: '52', class: 'BCA', attendance: 92 },
+        { id: '2', name: 'Himashu Kumar', rollNo: '33', class: 'BCA', attendance: 78 },
+        { id: '3', name: 'Lekh Raj Soni ', rollNo: '05', class: 'BCA', attendance: 68 },
+        { id: '4', name: 'Shreya Shambhavi', rollNo: '52', class: 'BCA', attendance: 50 },
     ];
     
     students.push(...addStudents);
@@ -441,4 +441,5 @@ function initializeDashboard() {
         themeIcon.textContent = '☀️';
         themeText.textContent = 'Light Mode';
     }
+
 }
