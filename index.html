@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education & Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">EduDashboard</div>
+                <button class="theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-tabs">
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#student-management" class="nav-link">Student Management</a></li>
+                <li><a href="#course-enrollment" class="nav-link">Course Enrollment</a></li>
+                <li><a href="#library-management" class="nav-link">Library Management</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content active">
+            <h2>Dashboard Overview</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalStudents">0</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgAttendance">0%</div>
+                    <div class="stat-label">Average Attendance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCourses">0</div>
+                    <div class="stat-label">Enrolled Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="issuedBooks">0</div>
+                    <div class="stat-label">Issued Books</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Attendance Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Management Tab -->
+        <section id="student-management" class="tab-content">
+            <h2>Student Management</h2>
+            
+            <div class="card">
+                <h3>Add New Student</h3>
+                <form id="addStudentForm">
+                    <div class="form-group">
+                        <label for="studentName">Name</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentRollNo">Roll No</label>
+                        <input type="text" id="studentRollNo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentClass">Class</label>
+                        <input type="text" id="studentClass" required>
+                    </div>
+                    <button type="submit">Add Student</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h3>Student List</h3>
+                <div id="studentTableContainer">
+                    <table id="studentTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Roll No</th>
+                                <th>Class</th>
+                                <th>Attendance %</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- Student rows will be inserted here -->
+                        </tbody>
+                    </table>
+                    <div id="noStudentsMessage" class="empty-state">
+                        No students added yet. Add your first student above.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Enrollment Tab -->
+        <section id="course-enrollment" class="tab-content">
+            <h2>Course Enrollment</h2>
+            
+            <div class="card">
+                <h3>Enroll Student in Course</h3>
+                <form id="enrollStudentForm">
+                    <div class="form-group">
+                        <label for="enrollStudent">Select Student</label>
+                        <select id="enrollStudent" required>
+                            <option value="">-- Select Student --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseSelect">Select Course</label>
+                        <select id="courseSelect" required>
+                            <option value="">-- Select Course --</option>
+                            <option value="Python">Python Programming</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Mobile App Development">Mobile App Development</option>
+                        </select>
+                    </div>
+                    <button type="submit">Enroll Student</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h3>Enrolled Students</h3>
+                <div id="enrollmentTableContainer">
+                    <table id="enrollmentTable">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Roll No</th>
+                                <th>Class</th>
+                                <th>Course</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="enrollmentTableBody">
+                            <!-- Enrollment rows will be inserted here -->
+                        </tbody>
+                    </table>
+                    <div id="noEnrollmentsMessage" class="empty-state">
+                        No students enrolled in courses yet.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Library Management Tab -->
+        <section id="library-management" class="tab-content">
+            <h2>Library Management</h2>
+            
+            <div class="card">
+                <h3>Issue/Return Book</h3>
+                <form id="libraryForm">
+                    <div class="form-group">
+                        <label for="libraryStudent">Select Student</label>
+                        <select id="libraryStudent" required>
+                            <option value="">-- Select Student --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookTitle">Book Title</label>
+                        <input type="text" id="bookTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Action</label>
+                        <div>
+                            <input type="radio" id="issueBook" name="bookAction" value="issue" checked>
+                            <label for="issueBook" style="display: inline; margin-right: 1rem;">Issue Book</label>
+                            
+                            <input type="radio" id="returnBook" name="bookAction" value="return">
+                            <label for="returnBook" style="display: inline;">Return Book</label>
+                        </div>
+                    </div>
+                    <button type="submit">Process</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h3>Library Records</h3>
+                <div id="libraryTableContainer">
+                    <table id="libraryTable">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Roll No</th>
+                                <th>Book Title</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="libraryTableBody">
+                            <!-- Library records will be inserted here -->
+                        </tbody>
+                    </table>
+                    <div id="noLibraryRecordsMessage" class="empty-state">
+                        No library records yet.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
